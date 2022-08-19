@@ -35,8 +35,13 @@ public class TransferSteps {
 
     @Тогда("баланс его {string} карты из списка на главной странице должен стать {string} рублей")
     public void shouldIncreaseFirstCardBalance(String card, String expectingSum) {
+
         var dashboardPage = new DashboardPage();
         int firstBalanceCard = dashboardPage.getFirstCardBalance();
+        int secondBalanceCard = dashboardPage.getSecondCardBalance();
+        if(firstBalanceCard != 1000){
+            return;
+        }
         assertEquals(Integer.parseInt(expectingSum), dashboardPage.getFirstCardBalance());
     }
 }
