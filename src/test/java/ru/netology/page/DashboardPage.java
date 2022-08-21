@@ -19,10 +19,6 @@ public class DashboardPage {
     private SelenideElement buttonCard2 = $$("[data-test-id='action-deposit']").last();
 
 
-//    public DashboardPage() {
-//        heading.shouldBe(visible);
-//    }
-
     public int getFirstCardBalance() {
         val text = cardOne.text();
         return extractBalance(text);
@@ -49,7 +45,8 @@ public class DashboardPage {
         buttonCard2.click();
         return new TransferPage();
     }
-    public void verifyIsDashboardPage(){
+
+    public void verifyIsDashboardPage() {
         heading.shouldBe(visible);
     }
 }

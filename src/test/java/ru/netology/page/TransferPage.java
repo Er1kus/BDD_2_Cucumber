@@ -20,17 +20,19 @@ public class TransferPage {
         heading.shouldBe(visible);
     }
 
-    public DashboardPage validTransfer(int amount, DataHelper.TransferCode code) {
+    public void transferAs(int amount, String number) {
         sumForTransfer.setValue(String.valueOf(amount));
-        fromCardNumber.setValue(code.getNumber());
+        fromCardNumber.setValue(number);
         transferButton.click();
+    }
+
+    public DashboardPage validTransfer(int amount, DataHelper.TransferCode code) {
+        transferAs(Integer.parseInt(String.valueOf(amount)), code.getNumber());
         return new DashboardPage();
     }
 
     public void invalidTransfer(int amount, DataHelper.TransferCode code) {
-        sumForTransfer.setValue(String.valueOf(amount));
-        fromCardNumber.setValue(code.getNumber());
-        transferButton.click();
+        transferAs(Integer.parseInt(String.valueOf(amount)), code.getNumber());
         errorPopup.shouldHave(text("Ошибка " +
                 "Ошибка! Произошла ошибка"));
     }
